@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raghav Raj // Coder & Creative</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="page-grid">
+        <div class="side-bar">CODING // DIRECTING // ART</div>
+        
+        <main class="main-content">
+            <header>
+                <p class="tagline">BCA Researcher & Artist</p>
+                <h1>Raghav<br>Raj.</h1>
+                
+                <div class="intro-container">
+                    <div class="bio">
+                        <p>
+                            A <b>Coder</b> and <b>Directing</b> specialist bridging the gap between technical BCA research 
+                            and cinematic storytelling. Based in Patiala, I explore the world as an <b>Artist</b>, 
+                            <b>Musician</b>, and filmmaker at <i>Direct Through Lens</i>.
+                        </p>
+                    </div>
+                </div>
+            </header>
+
+            <section>
+                <div class="section-label">Discipline</div>
+                <div class="work-grid">
+                    <div class="work-item">
+                        <i class="fa-solid fa-code"></i>
+                        <h3>Coder</h3>
+                        <p>Specializing in full-stack development and BCA-focused research. Building efficient, scalable systems.</p>
+                    </div>
+
+                    <div class="work-item">
+                        <i class="fa-solid fa-clapperboard"></i>
+                        <h3>Directing</h3>
+                        <p>Lead at Direct Through Lens. Visual storytelling with a focus on cinematic minimalism and narrative depth.</p>
+                    </div>
+
+                    <div class="work-item">
+                        <i class="fa-solid fa-guitar"></i>
+                        <h3>Music</h3>
+                        <p>Guitarist and vocalist. Integrating soundscapes into visual projects to create immersive experiences.</p>
+                    </div>
+
+                    <div class="work-item">
+                        <i class="fa-solid fa-palette"></i>
+                        <h3>Artist</h3>
+                        <p>Exploring digital and traditional mediums. Infusing an INFP perspective into every canvas and frame.</p>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <div>
+                    <a href="https://github.com/raghavrajpro" class="social-circle"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.youtube.com/@directthroughlens" class="social-circle"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/raghavraj_official" class="social-circle"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="mailto:raghavraj564@gmail.com" class="social-circle"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+                <div style="text-align: right;">
+                    <p style="font-size: 0.7rem; color: #bbb; text-transform: uppercase; letter-spacing: 2px;">Identity</p>
+                    <p>INFP-T // 2026</p>
+                </div>
+            </footer>
+        </main>
+
+        <div class="side-bar">PUNJABI UNIVERSITY // PATIALA</div>
+    </div>
+
+    <script>
+        // Smooth hover effect for cards
+        document.querySelectorAll('.work-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = "translateY(-5px)";
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = "translateY(0)";
+            });
+        });
+    </script>
+</body>
+</html>
