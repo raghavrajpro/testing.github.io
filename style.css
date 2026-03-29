@@ -1,0 +1,181 @@
+/* Core Styling & Variables */
+:root {
+  --bg-main: #f9f9f9;
+  --card: #ffffff;
+  --text-main: #111111;
+  --text-muted: #666666;
+  --border-light: #e5e5e5;
+  --toast-bg: #111111;
+  --toast-text: #ffffff;
+}
+
+[data-theme="dark"] {
+  --bg-main: #111111;
+  --card: #1a1a1a;
+  --text-main: #f9f9f9;
+  --text-muted: #a3a3a3;
+  --border-light: #333333;
+  --toast-bg: #f9f9f9;
+  --toast-text: #111111;
+}
+
+body { 
+    font-family: 'Manrope', sans-serif; 
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.font-display { font-family: 'Syncopate', sans-serif; }
+
+/* Custom Cursor */
+#cursor {
+    width: 12px; height: 12px;
+    background: var(--text-main);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), background 0.3s, border 0.3s;
+    will-change: transform;
+    transform: translate(-50%, -50%);
+}
+
+#cursor.hovered {
+    transform: translate(-50%, -50%) scale(4);
+    background: transparent;
+    border: 1px solid var(--text-main);
+}
+
+@media (hover: none) and (pointer: coarse) { 
+    #cursor { display: none; } 
+    * { cursor: auto !important; }
+}
+
+/* Visual Flourishes */
+.text-stroke { 
+    -webkit-text-stroke: 1px var(--text-muted); 
+    color: transparent; 
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.85); 
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-light);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+}
+[data-theme="dark"] .glass-panel {
+    background: rgba(26, 26, 26, 0.85);
+}
+
+.link-hover { position: relative; }
+.link-hover::after {
+    content: ''; position: absolute; bottom: -2px; left: 0;
+    width: 0; height: 1px; background: var(--text-main); transition: width 0.3s ease;
+}
+.link-hover:hover::after { width: 100%; }
+
+/* Interactions */
+.card-3d-wrap { perspective: 1200px; }
+.card-3d-inner { transition: transform 0.1s ease-out; transform-style: preserve-3d; }
+
+.project-card img { transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.project-card:hover img { transform: scale(1.05); }
+
+.project-overlay { opacity: 0; transition: opacity 0.4s; }
+.project-card:hover .project-overlay { opacity: 1; }
+
+.skill-bar { background: var(--text-main); transform-origin: left; transform: scaleX(0); }
+
+/* Navigation */
+.mobile-menu {
+    transform: translateY(-100%);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mobile-menu.active { transform: translateY(0); }
+
+input, textarea { background: transparent; color: var(--text-main); }
+input::placeholder, textarea::placeholder { color: var(--text-muted); font-weight: 300; }
+
+/* Filter Buttons */
+.filter-btn.active {
+    background-color: var(--text-main);
+    color: var(--bg-main);
+}
+
+/* Toast Notification */
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.toast {
+    background-color: var(--toast-bg);
+    color: var(--toast-text);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s;
+}
+.toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Back to Top */
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: var(--card);
+    border: 1px solid var(--border-light);
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: opacity 0.4s, transform 0.4s, background-color 0.3s, color 0.3s;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+#backToTop.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+#backToTop:hover {
+    background-color: var(--text-main);
+    color: var(--bg-main);
+}
+
+/* Typing Caret */
+.caret {
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    background-color: var(--text-main);
+    animation: blink 1s step-end infinite;
+    vertical-align: bottom;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}

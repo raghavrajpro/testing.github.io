@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raghav Raj — code & cinema</title>
+    <!-- Fonts & dependencies (minimal, fast) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Manrope:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bg-main': 'var(--bg-main)',
+                        'card': 'var(--card)',
+                        'text-main': 'var(--text-main)',
+                        'text-muted': 'var(--text-muted)',
+                        'border-light': 'var(--border-light)',
+                    },
+                    fontFamily: {
+                        'display': ['Syncopate', 'sans-serif'],
+                        'body': ['Manrope', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="overflow-x-hidden bg-bg-main">
+    <div id="cursor"></div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu"
+        class="mobile-menu fixed inset-0 bg-bg-main z-40 flex flex-col items-center justify-center gap-8">
+        <a href="#projects" onclick="toggleMenu()"
+            class="text-3xl font-display tracking-widest text-text-main hover:text-text-muted transition-colors">WORK</a>
+        <a href="#about" onclick="toggleMenu()"
+            class="text-3xl font-display tracking-widest text-text-main hover:text-text-muted transition-colors">ABOUT</a>
+        <a href="#education" onclick="toggleMenu()"
+            class="text-3xl font-display tracking-widest text-text-main hover:text-text-muted transition-colors">BACKGROUND</a>
+        <a href="#contact" onclick="toggleMenu()"
+            class="text-3xl font-display tracking-widest text-text-main hover:text-text-muted transition-colors">CONTACT</a>
+        <a href="pic/resume.pdf" download="Raghav_Raj_Resume.pdf" id="mobileResumeBtn" onclick="toggleMenu()"
+            class="text-3xl font-display tracking-widest text-text-main hover:text-text-muted transition-colors">RESUME</a>
+        <button id="mobileThemeToggleBtn"
+            class="text-3xl font-display tracking-widest text-text-main hover:text-text-muted transition-colors mt-8 focus:outline-none">DARK
+            MODE</button>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed top-4 md:top-8 left-1/2 -translate-x-1/2 z-50 w-full max-w-5xl px-4 md:px-6">
+        <div class="glass-panel rounded-full px-6 md:px-8 py-3 md:py-4 flex justify-between items-center">
+            <a href="#" class="font-display text-[10px] md:text-xs tracking-widest font-bold cursor-hover">RAGHAV
+                RAJ</a>
+            <div class="hidden md:flex gap-8 items-center">
+                <a href="#projects" class="text-xs tracking-widest link-hover cursor-hover font-medium">WORK</a>
+                <a href="#about" class="text-xs tracking-widest link-hover cursor-hover font-medium">ABOUT</a>
+                <a href="#education" class="text-xs tracking-widest link-hover cursor-hover font-medium">EDUCATION</a>
+                <a href="#contact" class="text-xs tracking-widest link-hover cursor-hover font-medium">CONTACT</a>
+                <a href="pic/resume.pdf" download="Raghav_Raj_Resume.pdf" id="desktopResumeBtn"
+                    class="text-xs tracking-widest link-hover cursor-hover font-medium">RESUME</a>
+                <button id="themeToggleBtn"
+                    class="cursor-hover text-text-main hover:text-text-muted transition-colors ml-4 focus:outline-none"
+                    aria-label="Toggle Theme">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex items-center gap-4 md:hidden">
+                <button id="menuBtn" onclick="toggleMenu()" class="text-text-main p-2 focus:outline-none"
+                    aria-label="menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+            <a href="#contact"
+                class="hidden md:block text-xs tracking-widest border border-text-main px-4 py-2 rounded-full hover:bg-text-main hover:text-bg-main transition-all cursor-hover font-medium ml-4">
+                SAY HELLO
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="min-h-screen relative flex items-center justify-center pt-24 pb-12 md:pt-0 md:pb-0">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
+            <div class="order-2 lg:order-1 text-center lg:text-left">
+                <p
+                    class="text-[10px] md:text-xs tracking-[0.2em] uppercase text-text-muted mb-4 hero-fade font-semibold">
+                    BCA (Hons) Researcher & Developer</p>
+                <h1
+                    class="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-display font-bold leading-tight tracking-tighter mb-6 hero-text text-text-main min-h-[2.5em] md:min-h-[2.2em] lg:min-h-[2.5em] text-center lg:text-left break-words w-full">
+                    <span id="typing-text" class="whitespace-pre-wrap"></span><span class="caret"></span>
+                </h1>
+                <p
+                    class="text-base md:text-lg text-text-muted font-light leading-relaxed max-w-md mx-auto lg:mx-0 mb-8 hero-fade">
+                    Bridging code, camera, and creativity. I specialize in <span
+                        class="text-text-main font-medium">Python/Flask Web Development</span> and expressive <span
+                        class="text-text-main font-medium">Filmmaking</span>.
+                </p>
+                <div class="flex gap-4 justify-center lg:justify-start hero-fade">
+                    <a href="#projects"
+                        class="bg-text-main text-bg-main px-6 md:px-8 py-3 md:py-4 rounded-full text-[10px] md:text-xs font-semibold tracking-widest uppercase hover:opacity-80 transition-all cursor-hover shadow-sm">
+                        View Work
+                    </a>
+                    <a href="#about"
+                        class="border border-border-light bg-card px-6 md:px-8 py-3 md:py-4 rounded-full text-[10px] md:text-xs font-semibold tracking-widest uppercase hover:border-text-main transition-all cursor-hover">
+                        About Me
+                    </a>
+                    <a href="pic/resume.pdf" download="Raghav_Raj_Resume.pdf" id="heroResumeBtn"
+                        class="border border-border-light bg-card px-6 md:px-8 py-3 md:py-4 rounded-full text-[10px] md:text-xs font-semibold tracking-widest uppercase hover:border-text-main transition-all cursor-hover hidden md:inline-block">
+                        RESUME
+                    </a>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2 flex justify-center hero-fade">
+                <div class="relative w-full max-w-sm md:max-w-md" id="card-3d-wrap">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-card border border-border-light p-2 transition-transform duration-200 ease-out"
+                        id="profile-card">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop"
+                            alt="Coding Workspace"
+                            class="w-full rounded-xl grayscale hover:grayscale-0 transition-all duration-700">
+                        <div
+                            class="absolute bottom-4 left-4 right-4 p-4 bg-card/90 backdrop-blur-sm rounded-xl border border-border-light shadow-sm">
+                            <div class="flex items-center gap-2 justify-center lg:justify-start">
+                                <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                                <span class="text-xs tracking-widest uppercase text-text-main font-semibold">Crafting
+                                    Digital Experiences</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2">
+            <span class="text-[10px] tracking-[0.2em] uppercase text-text-muted font-bold">Scroll</span>
+            <div class="w-px h-12 bg-gradient-to-b from-border-light to-transparent"></div>
+        </div>
+    </section>
+
+    <!-- quick stat strip -->
+    <section class="py-16 md:py-20 border-y border-border-light bg-card">
+        <div class="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div class="stat-item"><span
+                    class="text-sm md:text-base font-display font-bold block mb-2 text-text-main">DEVELOPMENT</span>
+                <p class="text-[10px] tracking-[0.1em] uppercase text-text-muted">Python, Flask, JS</p>
+            </div>
+            <div class="stat-item"><span
+                    class="text-sm md:text-base font-display font-bold block mb-2 text-text-main">FILMMAKING</span>
+                <p class="text-[10px] tracking-[0.1em] uppercase text-text-muted">Direct Through Lens</p>
+            </div>
+            <div class="stat-item"><span
+                    class="text-sm md:text-base font-display font-bold block mb-2 text-text-main">VISUAL ARTS</span>
+                <p class="text-[10px] tracking-[0.1em] uppercase text-text-muted">Photography & Editing</p>
+            </div>
+            <div class="stat-item"><span
+                    class="text-sm md:text-base font-display font-bold block mb-2 text-text-main">PERFORMANCE</span>
+                <p class="text-[10px] tracking-[0.1em] uppercase text-text-muted">Acting & Music</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-20 md:py-32">
+        <div class="max-w-5xl mx-auto px-6">
+            <div
+                class="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8 text-center md:text-left">
+                <div>
+                    <p class="text-xs tracking-[0.2em] uppercase text-text-muted mb-2 font-semibold">Portfolio</p>
+                    <h2 class="text-3xl md:text-5xl font-display font-bold tracking-tighter text-stroke">SELECTED WORK
+                    </h2>
+                </div>
+                <!-- Project Filters -->
+                <div class="flex flex-wrap justify-center md:justify-end gap-2 md:gap-4">
+                    <button
+                        class="filter-btn active px-4 py-2 rounded-full text-[10px] md:text-xs font-semibold tracking-widest uppercase border border-border-light hover:border-text-main transition-colors text-text-main"
+                        data-filter="all">All</button>
+                    <button
+                        class="filter-btn px-4 py-2 rounded-full text-[10px] md:text-xs font-semibold tracking-widest uppercase border border-border-light hover:border-text-main transition-colors text-text-main"
+                        data-filter="software">Software</button>
+                    <button
+                        class="filter-btn px-4 py-2 rounded-full text-[10px] md:text-xs font-semibold tracking-widest uppercase border border-border-light hover:border-text-main transition-colors text-text-main"
+                        data-filter="cinematography">Cinema</button>
+                    <button
+                        class="filter-btn px-4 py-2 rounded-full text-[10px] md:text-xs font-semibold tracking-widest uppercase border border-border-light hover:border-text-main transition-colors text-text-main"
+                        data-filter="creative">Creative</button>
+                </div>
+            </div>
+
+            <div class="space-y-16 md:space-y-20 flex tracking-widest flex-col items-center">
+                <!-- project 1 -->
+                <div class="project-card grid grid-cols-1 md:grid-cols-2 gap-8 items-center cursor-hover w-full"
+                    data-category="software">
+                    <div class="relative rounded-xl overflow-hidden border border-border-light shadow-sm">
+                        <img src="pic/rock.png" alt="Web Development" class="w-full aspect-video object-cover">
+                        <div
+                            class="project-overlay absolute inset-0 bg-card/80 backdrop-blur-sm flex items-center justify-center">
+                            <a href="#"
+                                class="text-xs tracking-widest border border-text-main text-text-main px-6 py-2 rounded-full font-semibold bg-card/50 hover:bg-text-main hover:text-bg-main transition-all">VIEW
+                                CODE</a>
+                        </div>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <span class="text-xs text-text-muted font-mono">01 / SOFTWARE</span>
+                        <h3
+                            class="text-2xl md:text-3xl font-display font-bold mt-2 mb-4 text-text-main tracking-normal">
+                            Dynamic Web Applications</h3>
+                        <p class="text-text-muted leading-relaxed mb-6 text-sm md:text-base tracking-normal">Building
+                            responsive, backend-driven web applications using modern frameworks. Clean code, seamless
+                            UI, robust server-side logic.</p>
+                        <div class="flex gap-2 justify-center md:justify-start flex-wrap"><span
+                                class="text-[10px] px-3 py-1 border border-border-light bg-card rounded-full font-semibold text-text-main tracking-widest">Python</span><span
+                                class="text-[10px] px-3 py-1 border border-border-light bg-card rounded-full font-semibold text-text-main tracking-widest">Flask</span><span
+                                class="text-[10px] px-3 py-1 border border-border-light bg-card rounded-full font-semibold text-text-main tracking-widest">JavaScript</span><span
+                                class="text-[10px] px-3 py-1 border border-border-light bg-card rounded-full font-semibold text-text-main tracking-widest">HTML/CSS</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- project 2 -->
+                <div class="project-card grid grid-cols-1 md:grid-cols-2 gap-8 items-center cursor-hover w-full"
+                    data-category="cinematography">
+                    <div class="relative rounded-xl overflow-hidden border border-border-light shadow-sm md:order-2">
+                        <img src="pic/dtl.png" alt="Filmmaking" class="w-full aspect-video object-cover">
+                        <div
+                            class="project-overlay absolute inset-0 bg-card/80 backdrop-blur-sm flex items-center justify-center">
+                            <a href="#"
+                                class="text-xs tracking-widest border border-text-main text-text-main px-6 py-2 rounded-full font-semibold bg-card/50 hover:bg-text-main hover:text-bg-main transition-all">WATCH
+                                CHANNEL</a>
+                        </div>
+                    </div>
+                    <div class="md:order-1 text-center md:text-left">
+                        <span class="text-xs text-text-muted font-mono">02 / CINEMATOGRAPHY</span>
+                        <h3
+                            class="text-2xl md:text-3xl font-display font-bold mt-2 mb-4 text-text-main tracking-normal">
+                            Direct Through Lens</h3>
+                        <p class="text-text-muted leading-relaxed mb-6 text-sm md:text-base tracking-normal">My personal
+                            YouTube channel dedicated to the art of filmmaking. From narratives to editing and color
+                            grading, bringing stories to life frame by frame.</p>
+                        <div class="flex gap-2 justify-center md:justify-start flex-wrap"><span
+                                class="text-[10px] px-3 py-1 border border-border-light bg-card rounded-full font-semibold text-text-main tracking-widest">Directing</span><span
+                                class="text-[10px] px-3 py-1 border border-border-light bg-card rounded-full font-semibold text-text-main tracking-widest">Video
+                                Editing</span><span
+                                class="text-[10px] px-3 py-1 border border-border-light bg-card rounded-full font-semibold text-text-main tracking-widest">YouTube</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- project 3 -->
+                <div class="project-card grid grid-cols-1 md:grid-cols-2 gap-8 items-center cursor-hover w-full"
+                    data-category="creative">
+                    <div class="relative rounded-xl overflow-hidden border border-border-light shadow-sm">
+                        <img src="pic/art.png" alt="Arts" class="w-full aspect-video object-cover">
+                        <div
+                            class="project-overlay absolute inset-0 bg-card/80 backdrop-blur-sm flex items-center justify-center">
+                            <a href="#"
+                                class="text-xs tracking-widest border border-text-main text-text-main px-6 py-2 rounded-full font-semibold bg-card/50 hover:bg-text-main hover:text-bg-main transition-all">VIEW
+                                GALLERY</a>
+                        </div>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <span class="text-xs text-text-muted font-mono">03 / CREATIVE</span>
+                        <h3
+                            class="text-2xl md:text-3xl font-display font-bold mt-2 mb-4 text-text-main tracking-normal">
+                            Visual Arts & Photography</h3>
+                        <p class="text-text-muted leading-relaxed mb-6 text-sm md:text-base tracking-normal">A curated
+                            portfolio showcasing my passion for photography and performing arts. Exploring composition,
+                            lighting, and dramatic expression.</p>
+                        <div class="flex gap-2 justify-center md:justify-start flex-wrap"><span
+                                class="text-[10px] px-3 py-1 border border-border-light bg-card rounded-full font-semibold text-text-main tracking-widest">Photography</span><span
+                                class="text-[10px] px-3 py-1 border border-border-light bg-card rounded-full font-semibold text-text-main tracking-widest">Acting</span><span
+                                class="text-[10px] px-3 py-1 border border-border-light bg-card rounded-full font-semibold text-text-main tracking-widest">Creative
+                                Direction</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About + skills -->
+    <section id="about" class="py-20 md:py-32 bg-card border-y border-border-light">
+        <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-start">
+            <div class="text-center lg:text-left">
+                <p class="text-xs tracking-[0.2em] uppercase text-text-muted mb-2 font-semibold">About</p>
+                <h2 class="text-3xl md:text-5xl font-display font-bold tracking-tighter mb-8 text-text-main">LOGIC
+                    MEETS<br>IMAGINATION.</h2>
+                <div class="space-y-4 text-text-muted font-light leading-relaxed text-sm md:text-base">
+                    <p>I'm a <span class="text-text-main font-medium">BCA (Honours) with Research</span> student at
+                        Punjabi University. As an INFP, I approach both technology and art with empathy and a desire to
+                        create meaningful experiences.</p>
+                    <p>When I'm not writing Python scripts or designing web interfaces, I am likely behind a camera for
+                        my channel, <span class="text-text-main font-medium">Direct Through Lens</span>, or exploring
+                        music through singing and playing guitar. I believe the best digital products are built by those
+                        who understand both logic and human emotion.</p>
+                </div>
+                <div class="mt-12 grid grid-cols-2 gap-8 text-center lg:text-left">
+                    <div>
+                        <h4 class="text-xs tracking-widest mb-4 text-text-muted font-bold">TECH STACK</h4>
+                        <ul class="space-y-2 text-sm text-text-main font-medium">
+                            <li>Python (Flask)</li>
+                            <li>JavaScript</li>
+                            <li>HTML & CSS</li>
+                            <li>Tailwind CSS</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xs tracking-widest mb-4 text-text-muted font-bold">CREATIVE TOOLKIT</h4>
+                        <ul class="space-y-2 text-sm text-text-main font-medium">
+                            <li>Video Editing</li>
+                            <li>Photography</li>
+                            <li>Guitar & Vocals</li>
+                            <li>Acting</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-xs tracking-widest mb-8 text-text-muted text-center lg:text-left font-bold">PROFICIENCY
+                </h3>
+                <div class="space-y-6 md:space-y-8">
+                    <div>
+                        <div class="flex justify-between mb-2 text-sm font-medium"><span class="text-text-main">Web
+                                Development</span></div>
+                        <div class="h-px bg-border-light w-full relative">
+                            <div class="skill-bar h-px absolute top-0 left-0 bottom-0" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2 text-sm font-medium"><span class="text-text-main">Python /
+                                Backend</span></div>
+                        <div class="h-px bg-border-light w-full relative">
+                            <div class="skill-bar h-px absolute top-0 left-0 bottom-0" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2 text-sm font-medium"><span
+                                class="text-text-main">Filmmaking & Editing</span></div>
+                        <div class="h-px bg-border-light w-full relative">
+                            <div class="skill-bar h-px absolute top-0 left-0 bottom-0" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2 text-sm font-medium"><span
+                                class="text-text-main">Photography & Design</span></div>
+                        <div class="h-px bg-border-light w-full relative">
+                            <div class="skill-bar h-px absolute top-0 left-0 bottom-0" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="mt-10 md:mt-12 p-6 border border-border-light bg-bg-main rounded-xl text-center lg:text-left shadow-sm">
+                    <h4 class="text-xs tracking-widest mb-2 text-text-muted font-bold">CURRENT FOCUS</h4>
+                    <p class="text-text-main font-medium">Short Film Production & Advanced Web Architecture</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="py-20 md:py-32">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="mb-12 md:mb-16 text-center md:text-left">
+                <p class="text-xs tracking-[0.2em] uppercase text-text-muted mb-2 font-semibold">Background</p>
+                <h2 class="text-3xl md:text-5xl font-display font-bold tracking-tighter text-stroke">ACADEMICS</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div
+                    class="bg-card border border-border-light shadow-sm rounded-xl p-6 md:p-8 hover:border-text-main transition-colors group">
+                    <span class="text-[10px] text-text-muted tracking-widest font-bold">CURRENT</span>
+                    <h3 class="text-xl font-bold mt-2 mb-1 text-text-main">BCA (Honours) with Research</h3>
+                    <p class="text-text-muted mb-4 font-medium">Punjabi University, Patiala</p>
+                    <p class="text-sm text-text-muted">Focusing on modern software development practices, algorithmic
+                        thinking, and comprehensive research in computer applications.</p>
+                </div>
+                <div
+                    class="bg-card border border-border-light shadow-sm rounded-xl p-6 md:p-8 hover:border-text-main transition-colors group">
+                    <span class="text-[10px] text-text-muted tracking-widest font-bold">COMPLETED</span>
+                    <h3 class="text-xl font-bold mt-2 mb-1 text-text-main">High School Education</h3>
+                    <p class="text-text-muted mb-4 font-medium">R.B.D.A.V Public School, Bathinda</p>
+                    <p class="text-sm text-text-muted">Strong foundation in logic, sciences, and early programming
+                        concepts that paved the way for my tech career.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact + form -->
+    <section id="contact" class="py-20 md:py-32 bg-card border-y border-border-light relative">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <p class="text-xs tracking-[0.2em] uppercase text-text-muted mb-4 font-semibold">Contact</p>
+            <h2 class="text-4xl md:text-7xl font-display font-bold tracking-tighter mb-8 text-text-main">LET'S CREATE.
+            </h2>
+            <p class="text-lg md:text-xl text-text-muted font-light max-w-xl mx-auto mb-10">
+                Whether it's discussing web architectures, collaborating on a film project, or just talking about art
+                and tech — my inbox is open.
+            </p>
+            <div
+                class="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-10 mb-8 text-text-main font-medium">
+                <div class="flex items-center gap-3"><svg class="w-4 h-4" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                        </path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>Bathinda, Punjab, India</div>
+            </div>
+
+            <form id="contactForm" action="https://formspree.io/f/xvzwvwdq" method="POST" accept-charset="UTF-8"
+                class="max-w-2xl mx-auto mb-16 text-left space-y-8 bg-bg-main p-8 rounded-2xl border border-border-light shadow-sm relative overflow-hidden">
+                <!-- Formspree hidden fields -->
+                <input type="hidden" name="_subject" value="Website Contact Form Submission">
+                <input type="hidden" name="_captcha" value="True">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="relative group">
+                        <label for="name"
+                            class="block text-xs font-bold tracking-widest text-text-muted uppercase mb-2">Name</label>
+                        <input type="text" id="name" name="name" required
+                            class="w-full bg-transparent border-b border-border-light py-2 focus:outline-none focus:border-text-main transition-colors text-text-main placeholder-neutral-400 cursor-hover"
+                            placeholder="Your Name">
+                    </div>
+                    <div class="relative group">
+                        <label for="email"
+                            class="block text-xs font-bold tracking-widest text-text-muted uppercase mb-2">Email</label>
+                        <input type="email" id="email" name="email" required
+                            class="w-full bg-transparent border-b border-border-light py-2 focus:outline-none focus:border-text-main transition-colors text-text-main placeholder-neutral-400 cursor-hover"
+                            placeholder="you@example.com">
+                    </div>
+                </div>
+                <div class="relative group">
+                    <label for="message"
+                        class="block text-xs font-bold tracking-widest text-text-muted uppercase mb-2">Message</label>
+                    <textarea id="message" name="message" rows="4" required
+                        class="w-full bg-transparent border-b border-border-light py-2 focus:outline-none focus:border-text-main transition-colors text-text-main resize-none placeholder-neutral-400 cursor-hover"
+                        placeholder="Tell me about your project..."></textarea>
+                </div>
+                <div class="text-center pt-4">
+                    <button type="submit"
+                        class="inline-block bg-text-main text-bg-main px-10 md:px-12 py-4 md:py-5 rounded-full text-xs md:text-sm font-bold tracking-widest uppercase hover:opacity-80 transition-all cursor-hover shadow-lg w-full md:w-auto overflow-hidden relative">SEND
+                        MESSAGE</button>
+                </div>
+            </form>
+            <div class="flex justify-center flex-wrap gap-4 md:gap-6 mt-8 border-t border-border-light pt-8">
+                <a href="https://github.com/raghavrajpro"
+                    class="text-text-muted hover:text-text-main font-semibold transition-colors cursor-hover text-xs md:text-sm tracking-widest">GITHUB</a><span
+                    class="text-border-light hidden sm:inline">/</span>
+                <a href="https://www.youtube.com/@directthroughlens"
+                    class="text-text-muted hover:text-text-main font-semibold transition-colors cursor-hover text-xs md:text-sm tracking-widest">YOUTUBE</a><span
+                    class="text-border-light hidden sm:inline">/</span>
+                <a href="https://www.linkedin.com/in/raghav-raj-a1b50831a"
+                    class="text-text-muted hover:text-text-main font-semibold transition-colors cursor-hover text-xs md:text-sm tracking-widest">LINKEDIN</a><span
+                    class="text-border-light hidden sm:inline">/</span>
+                <a href="https://www.instagram.com/raghavraj_official/"
+                    class="text-text-muted hover:text-text-main font-semibold transition-colors cursor-hover text-xs md:text-sm tracking-widest">INSTAGRAM</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 md:py-10 bg-bg-main">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <span class="text-xs text-text-muted font-medium">© 2026 Raghav Raj</span>
+            <span class="text-xs text-text-muted font-medium">Built with code and creativity</span>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="backToTop" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="20"
+            height="20">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
